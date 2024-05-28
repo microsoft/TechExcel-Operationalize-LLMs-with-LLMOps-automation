@@ -1,6 +1,6 @@
 #### Introduction to LLMs and Azure AI Services
 
-In this lab, we will have an overview on how to use Azure AI to work with large language models.
+In this exercise, we will have an overview on how to use Azure AI to work with large language models.
 
 The focus will be more on an overview of the creation process, so that in the next lessons we will delve deeper into the build, evaluation, deployment, and monitoring process.
 
@@ -13,7 +13,7 @@ An Azure subscription is required, where you can create an AI Project along with
 - [Create an AI Project and AI Hub Resources](#create-an-ai-project-and-ai-hub-resouces)
 - [Deploy an Azure OpenAI model](#deploy-an-azure-openai-model)
 
-#### Lab Steps
+#### Exercise Steps
 
 1) Use AzureAI Studio Playground.
 2) Work with an Open Source LLM Model.
@@ -76,7 +76,7 @@ Now, just click on **Deploy** and your model deployment is created. You can now 
 
 ##### Create a Content Safety Service
 
-By the end of this lab, you will test with Content Safety. Therefore, click on the following link to create it [https://aka.ms/acs-create](https://aka.ms/acs-create). 
+By the end of this exercise, you will test with Content Safety. Therefore, click on the following link to create it [https://aka.ms/acs-create](https://aka.ms/acs-create). 
 
 Select the resource group that you previously used for your AI Project. After that, follow the steps presented in the subsequent screens to continue with the creation process, start by clicking on **Review + create** button
 
@@ -91,7 +91,7 @@ Done! The Content Safety service is now created.
 ![LLMOps Workshop](images/labgrab12.png)
 
 
-#### Lab Steps
+#### Exercise Steps
 
 ##### 1) Use AzureAI Studio Playground
 
@@ -99,7 +99,7 @@ On the screen with the deployment information, select the **Open in playground**
 
 ![LLMOps Workshop](images/labgrab13.png)
 
-In this lab, we will run an example where the model will help us summarize and extract information from a conversation between a customer and a representative of a telco company.
+In this exercise, we will run an example where the model will help us summarize and extract information from a conversation between a customer and a representative of a telco company.
 
 Copy the following prompt into the system message field of the playground:
 
@@ -369,7 +369,7 @@ Results:
 
 #### Removing your Llama 2 deployment
 
-In this lab, you've used a **Standard_NC24s_v3** SKU to deploy your Llama2 model. To prevent incurring high costs, it's recommended to delete this deployment now since it won't be used in the next labs.
+In this exercise, you've used a **Standard_NC24s_v3** SKU to deploy your Llama2 model. To prevent incurring high costs, it's recommended to delete this deployment now since it won't be used in the next labs.
 
 To do this, select **Delete deployment** on the screen with the Llama2 deployment.
 

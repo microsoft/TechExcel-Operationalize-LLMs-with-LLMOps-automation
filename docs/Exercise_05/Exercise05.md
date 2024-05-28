@@ -1,6 +1,6 @@
 ####  Team Colaboration
 
-In this Lab, you will learn about project organization and administration.
+In this exercise, you will learn about project organization and administration.
 
 #### Prerequisites
 
@@ -48,9 +48,9 @@ Log Analytics Workspaces serve as the backing storage for application insights, 
 
 https://learn.microsoft.com/en-us/azure/ai-studio/concepts/rbac-ai-studio
 
-#### Lab Steps
+#### Exercise Steps
 
-Create a new AI Project and Resource, and explore each in AI Studio. (See the first lab if you have issues)
+Create a new AI Project and Resource, and explore each in AI Studio. (See the first exercise if you have issues)
 
 *AI Resource*  
    

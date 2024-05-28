@@ -8,11 +8,11 @@ An Azure subscription where you can create an AI Hub Resource and a AI Search se
 
 #### Setup
 
-If you are running this Lab after lesson 1, you don't need to worry about this step. Otherwise, follow **Setup** from **Lesson 1** to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
+If you are running this exercise after lesson 1, you don't need to worry about this step. Otherwise, follow **Setup** from **Lesson 1** to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
 
-#### Lab Steps
+#### Exercise Steps
 
-During this lab, we will cover the following steps:
+During this exercise, we will cover the following steps:
 
 1) Create a conversational RAG flow.
 
@@ -38,21 +38,21 @@ Click the **Save** button to save your flow.
 
 ![LLMOps Workshop](images/lab2grab4.png)
 
-###### 2.1) Flow overview
+###### 1.1) Flow overview
 
 The first node, `modify_query_with_history`, produces a search query using the user's question and their previous interactions. Next, in the `lookup` node, the flow uses the vector index to conduct a search within a vector store, which is where the RAG pattern retrieval step takes place. Following the search process, the `generate_prompt_context` node consolidates the results into a string. This string then serves as input for the `Prompt_variants` node, which formulates various prompts. Finally, these prompts are used to generate the user's answer in the `chat_with_context` node.
 
-###### 2.2) Search index
+###### 1.2) Search index
 
 Before you can start running your flow, a crucial step is to establish the search index for the Retrieval stage. This search index will be provided by the Azure AI Search service.
 
-The AI Search service was originally created in the **Setup** section of this lab. If you have not yet created the Search service, you will need to set one up as explained below. With the search service created, you can now proceed to create the index.
+The AI Search service was originally created in the **Setup** section of this exercise. If you have not yet created the Search service, you will need to set one up as explained below. With the search service created, you can now proceed to create the index.
 
 In our case, we will create a **Vector index**. To do this, you just need to go back to the project in the **AI Studio**, select the **Indexes** option, and then click on the **New index** button.  
    
 ![LLMOps Workshop](images/lab2grab5.png)
    
-At the `Source data` stage, select the `Upload files` option and upload the PDF `files/surface-pro-4-user-guide-EN.pdf` to the data folder of this lab, as shown in the next screen and click **Next**.  
+At the `Source data` stage, select the `Upload files` option and upload the PDF `files/surface-pro-4-user-guide-EN.pdf` to the data folder of this exercis, as shown in the next screen and click **Next**.  
    
 ![LLMOps Workshop](images/lab2grab6.png)
    
@@ -96,7 +96,7 @@ Now, let's go back to the `lookup` node. Select the `Hybrid (vector + keyword)` 
 
 ![LLMOps Workshop](images/lab2grab13.png)
 
-###### 2.3) Updating connection information
+###### 1.3) Updating connection information
 
 Now you will need to update the Connections of the nodes that link with LLM models.  
 
@@ -108,7 +108,7 @@ And the Connection for the `chat_with_context node` with the gpt-4 deployment, a
 
 ![LLMOps Workshop](images/lab2grab15.png)
 
-###### 2.4) Testing your RAG flow
+###### 1.4) Testing your RAG flow
 
 Everything is now set up for you to initiate your chat flow. Simply click on the blue **Chat** button located at the top right corner of your page to begin interacting with the flow.
 

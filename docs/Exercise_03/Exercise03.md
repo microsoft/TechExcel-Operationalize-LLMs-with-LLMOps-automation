@@ -6,11 +6,11 @@ An Azure subscription where you can create an AI Hub Resource and a AI Search se
 
 #### Setup
 
-If you are running this Lab after lesson 1, you don't need to worry about this step. Otherwise, follow **Setup** from **Lesson 1** to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
+If you are running this exercise after lesson 1, you don't need to worry about this step. Otherwise, follow **Setup** from **Lesson 1** to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
 
-#### Lab Steps
+#### Exercise Steps
 
-In this Lab, you will execute the following steps:
+In this exercis, you will execute the following steps:
 
 1) Evaluate your Chat flow.
 
@@ -28,7 +28,7 @@ For the RAG flow that you created earlier to be evaluated, you must include addi
 
 This information will be used by the Evaluation Flow. To do this, just follow these steps:
 
-In the Flows section of **Prompt Flow**, open the `Multi-Round Q&A on Your Data` flow that you created in the previous lab. This will be the flow we use for evaluation.
+In the Flows section of **Prompt Flow**, open the `Multi-Round Q&A on Your Data` flow that you created in the previous exercise. This will be the flow we use for evaluation.
 
 ![LLMOps Workshop](images/lab3grab1.png)
 
@@ -82,7 +82,7 @@ QnA GPT Similarity Evaluation:
 
 ###### 1.3) Run the evaluation
 
-In the Flows section of **Prompt Flow**, open the `Multi-Round Q&A on Your Data` flow that you created in the previous lab. This will be the flow we use for evaluation.
+In the Flows section of **Prompt Flow**, open the `Multi-Round Q&A on Your Data` flow that you created in the previous exercise. This will be the flow we use for evaluation.
 
 Start the automatic runtime by selecting **Start compute session**. The runtime will be useful for you to work with the flow moving forward.
 
@@ -150,7 +150,7 @@ You can also select **Switch to dashboard view** to access a dashboard that prov
 
 ##### 2) Deploy the RAG flow to an online managed endpoint
 
-Open the **Multi-Round Q&A on Your Data** flow that you created in the previous lab.
+Open the **Multi-Round Q&A on Your Data** flow that you created in the previous exercise.
 
 After opening the flow, follow the instructions indicated in this link:
 

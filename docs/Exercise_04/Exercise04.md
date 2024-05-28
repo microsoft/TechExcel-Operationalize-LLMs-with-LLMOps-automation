@@ -6,13 +6,13 @@ An Azure subscription where you can create an AI Hub Resource and a AI Search se
 
 #### Setup
 
-If you are running this Lab after lesson 1, you don't need to worry about this step.
+If you are running this exercise after lesson 1, you don't need to worry about this step.
 
 Otherwise, follow **Setup** from **Lesson 1** to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
 
-#### Lab Steps
+#### Exercise Steps
 
-In this Lab, you will execute the following steps:
+In this exercise, you will execute the following steps:
 
 1) Monitoring your LLMs flow.
 

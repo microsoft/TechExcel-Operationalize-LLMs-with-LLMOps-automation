@@ -1,14 +1,14 @@
 ####  Lesson 6: Automating Everything
 
-In this Lab, you will learn how to automate the build, evaluation and deployment of your LLM orchestration flow. To accomplish this, we will use the [**LLMOps with Prompt Flow**](https://github.com/microsoft/llmops-promptflow-template) template as a reference for deploying an LLM using **Prompt Flow** and **Github Actions**.
+In this exercise, you will learn how to automate the build, evaluation and deployment of your LLM orchestration flow. To accomplish this, we will use the [**LLMOps with Prompt Flow**](https://github.com/microsoft/llmops-promptflow-template) template as a reference for deploying an LLM using **Prompt Flow** and **Github Actions**.
 
 ##### Prerequisites
 
-Prerequisites for this lab are described in the [Project setup](lab06_01_project_setup.ipynb) notebook.
+Prerequisites for this exercise are described in the [Project setup](Exercise06_01_project_setup.ipynb) notebook.
 
 ##### Setup
 
-Setup will be part of the lab as you will see later in the "Lab Steps" section.
+Setup will be part of the exercise as you will see later in the "Exercise Steps" section.
 
 ##### LLMOps with Prompt Flow overview
 
@@ -19,7 +19,7 @@ Setup will be part of the lab as you will see later in the "Lab Steps" section.
 
 The **LLMOps with Prompt Flow** template includes three example use cases: named_entity_recognition, web_classification and math_coding. The examples can serve as a reference for you to automate your own orchestration flow. For each example, a set of GitHub workflows has been provided to automate everything from unit testing to the deployment of the flow. These workflow files are located in the template's `.github/workflows` directory.
 
-In this Lab, we will use the **named_entity_recognition** example, which comes with the following workflows:
+In this exercise, we will use the **named_entity_recognition** example, which comes with the following workflows:
 
 The initial workflow, named `named_entity_recognition_pr_dev_workflow.yml`, is automatically triggered whenever a pull request (PR) is created. The primary objective of this workflow is to ensure that the code standards are consistently maintained across all submitted PRs.
 
@@ -29,15 +29,15 @@ The third workflow, named `named_entity_recognition_post_prod_eval.yml`, is desi
 
 The template example was designed for a branch structure where there is a development branch where the team integrates code changes that go into the development environment. 
  
-In this lab, for simplicity's sake, we will only go up to step 5 of the diagram at the beginning of this page, but the knowledge gained can be easily applied to extend the flow and configuration files for automating steps 6 onwards.
+In this exercise, for simplicity's sake, we will only go up to step 5 of the diagram at the beginning of this page, but the knowledge gained can be easily applied to extend the flow and configuration files for automating steps 6 onwards.
 
-##### Lab Steps
+##### Exercise Steps
 
-We split the lab into two steps; in the first, you will do the necessary setup to run the template, while in the second we will simulate a change in the code of your orchestration flow. Each step can be performed through its respective notebook:
+We split the exercise into two steps; in the first, you will do the necessary setup to run the template, while in the second we will simulate a change in the code of your orchestration flow. Each step can be performed through its respective notebook:
 
-1) [Project setup](lab06_01_project_setup.ipynb)
+1) [Project setup](Exercise06_01_project_setup.ipynb)
 
-2) [Making a change in the flow](lab06_02_project_making_a_change.ipynb)
+2) [Making a change in the flow](Exercise06_02_project_making_a_change.ipynb)
 
 #### References
 
