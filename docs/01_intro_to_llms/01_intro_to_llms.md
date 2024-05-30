@@ -11,7 +11,7 @@ has_children: true
 
 In this exercise, we will have an overview on how to use Azure AI to work with large language models.
 
-The focus will be more on an overview of the creation process, so that in the next lessons we will delve deeper into the build, evaluation, deployment, and monitoring process.
+The focus will be more on an overview of the creation process, so that in the next lessons we will delve deeper into the build, evaluation, deployment, and monitoring process. The initial setup for your environments will be included at the start of the first task.
 
 ## Objectives
 
