@@ -1,0 +1,25 @@
+title: Operationalize LLMs with LLMOps automation
+description: This lab teaches you how to create and test LLMs inside Azure AI Studio
+theme: just-the-docs
+
+# url: https://microsoft.github.io/TechExcel-Operationalize-LLMs-with-LLMOps-automation//
+
+aux_links:
+  "TechExcel: Operationalize LLMs with LLMOps automation": 
+    - "https://github.com/microsoft/TechExcel-Operationalize-LLMs-with-LLMOps-automation"
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: blue
+  new:
+    title: New
+    color: green
+  note:
+    title: Note 
+    color: purple
+  warning:
+    title: Warning
+    color: red
