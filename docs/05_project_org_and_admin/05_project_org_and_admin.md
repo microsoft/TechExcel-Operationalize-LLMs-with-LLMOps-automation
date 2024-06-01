@@ -9,7 +9,9 @@ has_children: true
 
 ##  Scenario
 
-In this exercise you will create a new AI Project and Resource, and explore each in AI Studio. (See the first exercises if you have issues in setup)
+In this exercise, you will create a new AI project and resource, and explore each in Azure AI Studio. This will build on the foundational knowledge gained in the previous exercises. Refer to the earlier exercises if you encounter any issues with the setup.
+
+By mastering these objectives, Lamna’s team will enhance their capability to manage AI projects autonomously, ensuring streamlined operations and effective utilization of Azure AI services for their healthcare solutions.
 
 ## Objectives
 
