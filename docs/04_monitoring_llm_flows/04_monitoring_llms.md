@@ -9,7 +9,9 @@ has_children: true
 
 ##  Scenario
 
-In this exercise you will be adding monitoring to your llm flows and adding content safety to your solutions.
+In this exercise, you will be adding monitoring capabilities to your LLM flows and incorporating content safety measures into your solutions. This is essential for Lamna Healthcare Company to ensure the optimal performance and reliability of their 24/7 support virtual agent while maintaining ethical standards and compliance with regulations.
+
+By completing this exercise, Lamna’s team will be equipped with the tools and knowledge to maintain a high standard of service quality and safety in their AI-driven customer support system.
 
 ## Objectives
 
