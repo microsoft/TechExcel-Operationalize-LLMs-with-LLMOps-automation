@@ -1,5 +1,5 @@
 ---
-title: '1. Setup'
+title: '0. Setup'
 layout: default
 nav_order: 1
 parent: 'Exercise 01: Introduction to LLMs and Azure AI Services'
