@@ -15,7 +15,7 @@ By mastering these objectives, Lamna's team will enhance their ability to manage
 
 ## Setup and initial instruction
 
-![The diagram shows how LLMOps works with Prompt Flow.](media/llmops-with-prompt-flow-diagram.png)
+![The diagram shows how LLMOps works with Prompt Flow.](images/llmops-with-prompt-flow-diagram.png)
 
 The **LLMOps with Prompt Flow** template includes three example use cases: `named_entity_recognition`, `web_classification`, and `math_coding`. The examples can serve as a reference for you to automate your own orchestration flow. For each example, a set of GitHub workflows has been provided to automate everything from unit testing to the deployment of the flow. These workflow files are located in the template's `.github/workflows` directory.
 
