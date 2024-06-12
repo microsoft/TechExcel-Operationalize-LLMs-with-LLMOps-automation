@@ -9,7 +9,7 @@ has_children: true
 
 ## Scenario
 
-In this exercise, you will learn how to automate the build, evaluation, and deployment of your LLM orchestration flow. To accomplish this, we will use the LLMOps with Prompt Flow template [**LLMOps with Prompt Flow**](https://github.com/microsoft/llmops-promptflow-template)  as a reference for deploying an LLM using **Prompt Flow** and **GitHub Actions**. This automation is crucial for Lamna Healthcare Company to ensure efficient and error-free deployment processes for their 24/7 support virtual agent.
+In this exercise, you will learn how to automate the build, evaluation, and deployment of your LLM orchestration flow. To accomplish this, we will use the LLMOps with Prompt Flow template [**LLMOps with Prompt Flow**](https://github.com/microsoft/llmops-promptflow-template) as a reference for deploying an LLM using **Prompt Flow** and **GitHub Actions**. This automation is crucial for Lamna Healthcare Company to ensure efficient and error-free deployment processes for their 24/7 support virtual agent.
 
 By mastering these objectives, Lamna's team will enhance their ability to manage AI projects autonomously, ensuring streamlined operations and effective utilization of Azure AI services for their healthcare solutions.
 
