@@ -66,3 +66,5 @@ Log Analytics Workspaces serve as the backing storage for application insights, 
 #### AI Project and AI Resource RBAC
 
 https://learn.microsoft.com/en-us/azure/ai-studio/concepts/rbac-ai-studio
+
+</details>
