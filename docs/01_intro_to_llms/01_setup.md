@@ -28,29 +28,29 @@ Let's start by creating a project in Azure AI Studio.
 
 1. Go to your browser and type: [https://ai.azure.com](https://ai.azure.com). After logging in with your Azure account, you will see the following screen:
 
-    ![LLMOps Workshop](images/labgrab1.png)
+    ![Azure AI Studio displays.](images/labgrab1.png)
 
 2. Select **+ New project** to create a project.
 
 3. Choose an unique name for your project.
 
-    ![LLMOps Workshop](images/labgrab2.png)
+    ![The Create a project dialog displays with a Project name entered.](images/labgrab2.png)
 
 4. Above the **Hub** drop down box, select the **Create a new hub** link and choose a name for your AI hub where your project resources will be created.
 
-    ![LLMOps Workshop](images/labgrab3.png)
+    ![The Create a hub stage of the Create a project dialog displays. The Hub name field is populated with a value.](images/labgrab3.png)
 
     > Note: Choose the region where the GPT-4 models and text-embeddings-ada-002 are available.
 
 5. Remaining on this screen, select the **Create a new Azure AI Search** link located above the **Connect Azure AI Search** drop down. Enter a name for the Azure AI Search resource, then choose **Create**.
 
-    ![LLMOps Workshop](images/labgrab4.png)
+    ![The Create a hub stage of the Create a project dialog displays with a pop up above the Connect Azure AI Search field asking for a name for a Standard Azure AI Search index resource. The Name field is populated with a value.](images/labgrab4.png)
 
 6. Finally, review the details of the project, then select the **Create a project** button to deploy the project resources. Wait for the deployment to complete, this will take a minute or two.
 
-    ![LLMOps Workshop](images/labgrab5.png)
+    ![The Review and finish stage of the Create a project dialog displays with a summary of the previous choices. The Create a project button is visible.](images/labgrab5.png)
 
-    ![LLMOps Workshop](images/labgrab6.png)
+    ![A listing of the resources that are to be deployed is displayed. A message at the bottom of the Create a project dialog indicates resources are being created.](images/labgrab6.png)
 
 ##### 2) Deploy an Azure OpenAI model
 
@@ -58,15 +58,15 @@ After creating your AI Project, the first step is to create a deployment of an O
 
 1. To do this, select the **Deployments** option on the bottom of the project panel, and select the **+ Create deployment** button.
 
-    ![LLMOps Workshop](images/labgrab7.png)
+    ![The Deployments screen in Azure AI Studio displays. There are no deployments in the list.](images/labgrab7.png)
 
-2. From the list of models, select **gpt-4**.
+2. From the list of models, search for and select **gpt-4**.
 
-    ![LLMOps Workshop](images/labgrab8.png)
+    ![The model catalog search displays with the gpt-4 model selected.](images/labgrab8.png)
 
 3. In the **Deploy model** dialog window, define the name of the deployment, in this case, you can use the same name as the model and in the version field select the latest available version, in the example below we chose version **0125-Preview** (gpt4-turbo).
 
-    ![LLMOps Workshop](images/labgrab9.png)
+    ![The Deploy model gpt-4 displays with the version of 0125-Preview selected.](images/labgrab9.png)
 
 4. Select at least 40K **Tokens per Minute Rate Limit** to ensure the flows run smoothly in the upcoming lessons.
 
@@ -80,14 +80,14 @@ This exercise involves the deployment of the Azure Content Safety service. This 
 
 2. On the **Create Content Safety** screen in the **Basics** tab, select the resource group that was deployed when creating the AI Project in the first step. Provide a name for the service, and select **Standard S0** as the pricing tier. Select **Review + create** to continue.
 
-    ![LLMOps Workshop](images/labgrab10.png)
+    ![The Create Content Safety screen Basics tab displays with the Name field populated and the Pricing tier set to Standard S0.](images/labgrab10.png)
 
 3. On the **Review + create** tab, review the details of the service settings, then select **Create** to deploy the Azure Content Safety service.
 
-    ![LLMOps Workshop](images/labgrab11.png)
+    ![The Create Content Safety Review + create tab displays with the Create button visible.](images/labgrab11.png)
 
 4. Wait for the Content Safety service to be created. Once complete, you've successfully achieved the goals of this setup task.
 
-    ![LLMOps Workshop](images/labgrab12.png)
+    ![A deployment confirmation screen displays indicating the deployment of the Content Safety Service has completed.](images/labgrab12.png)
 
 </details>
