@@ -7,7 +7,7 @@ has_children: true
 
 # Exercise 02 - Building LLMs Orchestration Flows
 
-##  Scenario
+## Scenario
 
 If you are running this exercise after Lesson 1, you don’t need to worry about this step. Otherwise, follow the setup instructions from Lesson 1 to create a project and its associated resources in Azure AI Studio, as well as to deploy the GPT-4 model.
 
@@ -20,8 +20,8 @@ By the end of this exercise, Lamna’s team will have a functional RAG flow inte
 After you complete this exercise, you will be able to:
 
 * Create a conversational RAG flow.
-* Work with an Open Source LLM Model.
-* Test and Validate
+* Create and populate a vector index.
+* Test and validate using Prompt Flow.
 
 ## Lab Duration
 
