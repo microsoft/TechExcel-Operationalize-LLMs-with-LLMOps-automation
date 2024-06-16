@@ -1,11 +1,11 @@
 ---
-title: 'Exercise 06: Automate Everything'
+title: 'Exercise 05: Automate Everything'
 layout: default
 nav_order: 7
 has_children: true
 ---
 
-# Exercise 06 - Automate Everything
+# Exercise 05 - Automate Everything
 
 ## Scenario
 
