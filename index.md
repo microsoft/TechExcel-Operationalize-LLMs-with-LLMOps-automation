@@ -17,7 +17,7 @@ nav_order: 1
 
 ## Solution architecture
 
-![Diagram showing Azure AI Studio and the scope of use within the environment](ArchitectureScope.png) "Preferred Solution Diagram")
+![Diagram showing Azure AI Studio and the scope of use within the environment](resource-provider-connected-resources.svg)
 
 The diagram shows the solution architecture of an AI project within Azure AI Studio. The AI Studio Hub includes the the Azure Subcription, Resource Group, and Azure Content Safety service. The AI Studio Hub provides integration with services including Azure OpenAI, Azure AI Search, and Azure Storage Accounts to implement AI-based solutions. The AI Playground offers tools like Chat Playground, Deployments, and Prompt Flow, that enable get quick and easy access to AI models such as GPT-4 and Llama-2 and interactive development tools.
 
@@ -31,7 +31,7 @@ This lab has exercises on:
 * Creating and testing multiple prompt flows and models
 * Using a notebook to setup and configure a project
 
-This lab is available as GitHub pages [here](https://microsoft.github.io/TechExcel-Operationalie-LLMs-with-LLMOps-automation)
+This lab is available as GitHub pages [here](https://microsoft.github.io/TechExcel-Operationalize-LLMs-with-LLMOps-automation)
 
 ## Prerequisites
 
