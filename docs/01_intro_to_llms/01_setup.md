@@ -13,9 +13,46 @@ In this setup task, you will setup and configure an Azure AI Studio project and 
 
 ## Success Criteria
 
+* Prerequisites for Workshop
 * Setup an Azure AI Studio project
 * Deploy a Large Language Model (LLM)
 * Deploy an Azure Content Safety service
+
+## Prerequisites
+<details markdown="block">
+<summary>Expand this section to view the prerequisites</summary>
+
+#### Check if you have enough quota for the compute power needed to deploy Llama model in Exercise 1:
+You will need 48 Standard_NC24s_v3 cores to deploy the Llama model. If you don't have enough quota, you can request an increase.
+
+#### In Powershell run the following command:
+```powershell
+$subscriptionId = "replace by your subscription id" 
+$region = "replace by the desired region" 
+$results = az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01" 
+$results | ConvertFrom-Json | Select-Object -ExpandProperty value | Where-Object { $_.name.value -eq "standardNCSv3Family" -and $_.name.localizedValue -eq "Standard NCSv3 Family Cluster Dedicated vCPUs" } 
+```
+
+#### Example of verification in EastUS region with 102 free cores
+
+![Verification](images/powershell-1.jpg)
+
+#### BASH equivalent
+
+```bash
+subscriptionId="replace by your subscription id" 
+region="replace by the desired region" 
+results=$(az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01") 
+echo $results | jq -r '.value[] | select(.name.value == "standardNCSv3Family" and .name.localizedValue == "Standard NCSv3 Family Cluster Dedicated vCPUs")' 
+```
+
+> [!IMPORTANT]
+> Make sure to have jq installed to process the JSON output. You can install jq using the following command if needed: 
+
+```powershell
+sudo apt-get install jq
+```
+</details>
 
 ## Setup Steps
 
