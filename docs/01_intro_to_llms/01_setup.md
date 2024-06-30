@@ -22,7 +22,7 @@ In this setup task, you will setup and configure an Azure AI Studio project and 
 <details markdown="block">
 <summary>Expand this section to view the prerequisites</summary>
 
-#### Check if you have enough quota for the compute power needed to deploy Llama model in Exercise 1:
+### Check if you have enough quota for the compute power needed to deploy Llama model in Exercise 1:
 You will need 48 Standard_NC24s_v3 cores to deploy the Llama model. If you don't have enough quota, you can request an increase.
 
 #### In Powershell run the following command:
@@ -46,12 +46,61 @@ results=$(az rest --method get --url "https://management.azure.com/subscriptions
 echo $results | jq -r '.value[] | select(.name.value == "standardNCSv3Family" and .name.localizedValue == "Standard NCSv3 Family Cluster Dedicated vCPUs")' 
 ```
 
-> [!IMPORTANT]
+> [!NOTE]
 > Make sure to have jq installed to process the JSON output. You can install jq using the following command if needed: 
 
 ```powershell
 sudo apt-get install jq
 ```
+
+### Check if the chosen region has availability for the Azure OpenAI model that will be used in Exercise 1:
+You will need 40k TPM of a GPT-4 model. If the region you want to use does not have availability, you can choose another region. You can run the following command in powershell to check how many GPT-4 TPMs do you have available in the desired region/sub. 
+
+```powershell
+$subscriptionId = "replace by your subscription id" 
+$region = "replace by the desired region" 
+$results = az cognitiveservices usage list --subscription $subscriptionId --location $region 
+$results | ConvertFrom-Json | Where-Object { $_.name.value -match 'Standard.gpt-4' } | Select-Object * 
+```
+#### Example of verification in EastUS region with 80k TPMs free for GPT-4-Turbo
+
+![Verification](images/powershell-2.jpg)
+
+#### BASH equivalent
+
+```bash
+subscriptionId="replace by your subscription id" 
+region="replace by the desired region" 
+results=$(az cognitiveservices usage list --subscription $subscriptionId --location $region) 
+echo $results | jq -r '.[] | select(.name.value | test("Standard.gpt-4"))' 
+```
+
+### Check if you have enough quota for the compute power that will be used to deploy the Prompt Flow in Exercise 3:
+
+You will need 48 free cores of `Standard_DS3_v2` to deploy the prompt flow fow in Exercises 3 and 4. Run the following command in powershell: 
+```powershell
+$subscriptionId = "replace by your subscription id" 
+$region = "replace by the desired region" 
+$results = az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01" 
+$results | ConvertFrom-Json | Select-Object -ExpandProperty value | Where-Object { $_.name.value -eq "standardDSv2Family" -and $_.name.localizedValue -eq "Standard DSv2 Family Cluster Dedicated vCPUs" } 
+```
+#### Bash equivalent: 
+```bash
+subscriptionId="replace by your subscription id" 
+region="replace by the desired region" 
+results=$(az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01") 
+echo $results | jq -r '.value[] | select(.name.value == " standardDSv2Family " and .name.localizedValue == " Standard DSv2 Family Cluster Dedicated vCPUs ")' 
+```
+### Llama 2 deployment for Exercise 1:
+Llama2 deployment takes approximately `15 minutes`, start the deployment in the setup phase so that when you reach the part of using the model it is already available. 
+
+### Adding text-embeddings-ada-002 deployment to setup for Exercise 2:
+In this setup early on, create text-embeddings-ada-002, it will be used in lab 2, but when created in lab 2 it can generate an error in the indexing process because in some cases it takes about 5 minutes to become active. You can wait till Exercise 2 to create it, but it is recommended to create it in this setup because of that 5 minutes possible delay.
+
+### Content safety Permissions: 
+
+Some attendees could see a problem openning the `Content Safety Studio`, unless they add the `Azure AI Developer role` to their user in the content safety resource, please add this role if you encounter the same problem.
+
 </details>
 
 ## Setup Steps
