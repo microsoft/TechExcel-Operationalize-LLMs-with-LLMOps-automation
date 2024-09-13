@@ -35,4 +35,4 @@ This lab is available as GitHub pages [here](https://microsoft.github.io/TechExc
 
 ## Prerequisites
 
-An Azure subscription is required, where you can create an AI Project along with its AI Hub Resource, a Content Safety service, and an AI Search service.
+An Azure external subscription is required, where you can create an AI Project along with its AI Hub Resource, a Content Safety service, a new instance of Azure OpenAI, and an AI Search service.
