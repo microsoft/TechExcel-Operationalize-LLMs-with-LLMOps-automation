@@ -4,7 +4,7 @@ layout: home
 nav_order: 1
 ---
 
-# TechExcel: Operationalize LLMs with LLMOps automation
+# TechExcel: Operationalize LLMs with GenAIOps automation
 
 ## Azure services and related products
 

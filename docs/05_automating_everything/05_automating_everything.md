@@ -9,7 +9,7 @@ has_children: true
 
 ## Scenario
 
-In this exercise, you'll learn to automate the build, evaluation, and deployment of your LLM orchestration flow. We'll use the [**LLMOps Accelerator**](https://github.com/azure/llmops) as a guide for deploying an LLM with **Prompt Flow** and **GitHub Actions**. This automation is vital for Lamna Healthcare Company, enabling efficient, error-free deployment processes for their 24/7 support virtual agent.
+In this exercise, you'll learn to automate the build, evaluation, and deployment of your LLM orchestration flow. We'll use the [**GenAIOps Accelerator**](https://github.com/azure/genaiops) as a guide for deploying an LLM with **Prompt Flow** and **GitHub Actions**. This automation is vital for Lamna Healthcare Company, enabling efficient, error-free deployment processes for their 24/7 support virtual agent.
 
 By mastering these tasks, Lamna Healthcare Company's team will boost their ability to manage AI projects independently, ensuring smooth operations and maximizing the benefits of Azure AI services for their healthcare solutions.
 
