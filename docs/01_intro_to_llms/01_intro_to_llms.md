@@ -19,10 +19,10 @@ By the end of this exercise, you as part of the Lamna team will have a solid und
 
 After you complete this exercise, you will be able to:
 
+* Bootstrap your project.
 * Use AzureAI Studio Playground.
 * Work with an Open Source LLM Model.
 * Test the prompt in Content Safety.
-* Create a Prompt Flow flow.
 
 ## Lab Duration
 

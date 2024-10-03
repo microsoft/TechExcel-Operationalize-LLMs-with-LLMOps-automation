@@ -5,175 +5,234 @@ nav_order: 1
 parent: 'Exercise 01: Introduction to LLMs and Azure AI Services'
 ---
 
-# Exercise 01 Setup - Use Azure AI Studio Playground and create an AI Project and establish AI Hub resources
+# Exercise 01 - Setup AI Project and AI Hub Resources
 
 ## Description
 
-In this setup task, you will setup and configure an Azure AI Studio project and deploy the underlying resources to support a centralized Azure AI Hub. Azure AI Hub is the main top-level resource in Azure AI Studio that enables governance, self-service, security and collaboration for AI projects.
+In this setup task, you will learn how to **start a new project** by creating a **GitHub repository** and an **AI Project** in a centralized **Azure AI Hub**. The **Azure AI Hub** is a top-level resource in Azure AI Studio that enables **governance, self-service, security**, and **collaboration for AI projects**.
 
 ## Success Criteria
 
-* Prerequisites for Workshop
-* Setup an Azure AI Studio project
-* Deploy a Large Language Model (LLM)
-* Deploy an Azure Content Safety service
+* Verify Prerequisites for Workshop
+* Initialize a GitHub Repository for Your Project
+* Set Up an Azure AI Hub and Project
 
 ## Prerequisites
 <details markdown="block">
 <summary>Expand this section to view the prerequisites</summary>
 
-### Check if you have enough quota for the compute power needed to deploy Llama model in Exercise 1:
-You will need 48 Standard_NC24s_v3 cores to deploy the Llama model. If you don't have enough quota, you can request an increase.
+### Required Tools
+* [Azure CLI (az)](https://aka.ms/install-az) - to manage Azure resources.
+* [Azure Developer CLI (azd)](https://aka.ms/install-azd) - to manage Azure deployments.
+* [GitHub CLI (gh)](https://cli.github.com/) - to create GitHub repo.
+* [Git](https://git-scm.com/downloads) - to update repository contents.
 
-#### In Powershell run the following command:
-```powershell
-$subscriptionId = "replace by your subscription id" 
-$region = "replace by the desired region" 
-$results = az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01" 
-$results | ConvertFrom-Json | Select-Object -ExpandProperty value | Where-Object { $_.name.value -eq "standardNCSv3Family" -and $_.name.localizedValue -eq "Standard NCSv3 Family Cluster Dedicated vCPUs" } 
-```
+### You will also need:
+* [Azure Subscription](https://azure.microsoft.com/free/) - sign up for a free account.
+* [GitHub Account](https://github.com/signup) - sign up for a free account.
+* [Access to Azure OpenAI](https://learn.microsoft.com/legal/cognitive-services/openai/limited-access) - submit a form to request access.
+* Permissions to create a Service Principal (SP) in your Azure AD Tenant.
+* Permissions to assign the Owner role or Contributor and User Access Administrator to the SP within the subscription.
 
-#### Example of verification in EastUS region with 102 free cores
+> **Note:**   
+> The Windows installers makes modifications your PATH. When using Windows Terminal or VS Code Terminal or other environment, you will need to **open a new window** for the changes to take effect. (Simply opening a new tab will _not_ be sufficient.)
 
-![Verification](images/powershell-1.jpg)
+### Verifiy tools are installed
 
-#### BASH equivalent
+**from a commandline verify the tools are installed and on your path**
 
-```bash
-subscriptionId="replace by your subscription id" 
-region="replace by the desired region" 
-results=$(az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01") 
-echo $results | jq -r '.value[] | select(.name.value == "standardNCSv3Family" and .name.localizedValue == "Standard NCSv3 Family Cluster Dedicated vCPUs")' 
-```
+   Open a Windows Terminal or Command Prompt:
 
-> [!NOTE]
-> Make sure to have jq installed to process the JSON output. You can install jq using the following command if needed: 
+   ```sh
+    az -v
+    azd version
+    git -v
+    gh --version
+   ```
+> **Note:**
+> if any of the tools suggest an upgrade please do so this can be acomplished with the ```winget upgrade``` conmand 
 
-```powershell
-sudo apt-get install jq
-```
 
-### Check if the chosen region has availability for the Azure OpenAI model that will be used in Exercise 1:
-You will need 40k TPM of a GPT-4 model. If the region you want to use does not have availability, you can choose another region. You can run the following command in powershell to check how many GPT-4 TPMs do you have available in the desired region/sub. 
+### Check Azure OpenAI Model Availability:
+You will need 40k TPM of gpt-35-turbo, gpt-4o and text-embedding-ada-002 models. If the region you want to use does not have availability, you can choose another region. You can run the following command in powershell or bash to check how many TPMs do you have available for those models in the desired region/sub.
+
+#### Powershell
 
 ```powershell
 $subscriptionId = "replace by your subscription id" 
 $region = "replace by the desired region" 
 $results = az cognitiveservices usage list --subscription $subscriptionId --location $region 
-$results | ConvertFrom-Json | Where-Object { $_.name.value -match 'Standard.gpt-4' } | Select-Object * 
+$results | ConvertFrom-Json | Where-Object { $_.name.value -eq 'OpenAI.Standard.gpt-4o' } | Select-Object *
+$results | ConvertFrom-Json | Where-Object { $_.name.value -eq 'OpenAI.Standard.gpt-35-turbo' } | Select-Object *
+$results | ConvertFrom-Json | Where-Object { $_.name.value -eq 'OpenAI.Standard.text-embedding-ada-002' } | Select-Object *
 ```
-#### Example of verification in EastUS region with 80k TPMs free for GPT-4-Turbo
 
-![Verification](images/powershell-2.jpg)
-
-#### BASH equivalent
+#### bash
 
 ```bash
 subscriptionId="replace by your subscription id" 
 region="replace by the desired region" 
 results=$(az cognitiveservices usage list --subscription $subscriptionId --location $region) 
-echo $results | jq -r '.[] | select(.name.value | test("Standard.gpt-4"))' 
+echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.gpt-4o")'
+echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.gpt-35-turbo")'
+echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.text-embedding-ada-002")'
 ```
-
-### Check if you have enough quota for the compute power that will be used to deploy the Prompt Flow in Exercise 3:
-
-You will need 48 free cores of `Standard_DS3_v2` to deploy the prompt flow fow in Exercises 3 and 4. Run the following command in powershell: 
-```powershell
-$subscriptionId = "replace by your subscription id" 
-$region = "replace by the desired region" 
-$results = az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01" 
-$results | ConvertFrom-Json | Select-Object -ExpandProperty value | Where-Object { $_.name.value -eq "standardDSv2Family" -and $_.name.localizedValue -eq "Standard DSv2 Family Cluster Dedicated vCPUs" } 
-```
-#### Bash equivalent: 
-```bash
-subscriptionId="replace by your subscription id" 
-region="replace by the desired region" 
-results=$(az rest --method get --url "https://management.azure.com/subscriptions/$subscriptionId/providers/Microsoft.MachineLearningServices/locations/$region/usages?api-version=2020-04-01") 
-echo $results | jq -r '.value[] | select(.name.value == " standardDSv2Family " and .name.localizedValue == " Standard DSv2 Family Cluster Dedicated vCPUs ")' 
-```
-### Llama 2 deployment for Exercise 1:
-Llama2 deployment takes approximately `15 minutes`, start the deployment in the setup phase so that when you reach the part of using the model it is already available. 
-
-### Adding text-embeddings-ada-002 deployment to setup for Exercise 2:
-In this setup early on, create text-embeddings-ada-002, it will be used in lab 2, but when created in lab 2 it can generate an error in the indexing process because in some cases it takes about 5 minutes to become active. You can wait till Exercise 2 to create it, but it is recommended to create it in this setup because of that 5 minutes possible delay.
-
-### Content safety Permissions: 
-
-Some attendees could see a problem openning the `Content Safety Studio`, unless they add the `Azure AI Developer role` to their user in the content safety resource, please add this role if you encounter the same problem.
-
 </details>
 
 ## Setup Steps
-
 <details markdown="block">
 <summary>Expand this section to view the solution</summary>
 
-##### 1) Create an AI Project and AI Hub Resouces
+### Steps to Bootstrap a Project
 
-Let's start by creating a project in Azure AI Studio.
+The bootstrapping process involves **creating a new project repository on GitHub** and populating it with content from a project template. Additionally, it sets up the **development environment** for your project. This environment will include an **Azure AI Studio project** and deploy the necessary resources to support a centralized **Azure AI Hub**.
 
-1. Go to your browser and type: [https://ai.azure.com](https://ai.azure.com). After logging in with your Azure account, you will see the following screen:
+1. **Clone the GenAIOps Repo into a temporary directory**
 
-    ![Azure AI Studio displays.](images/labgrab1.png)
+   Clone the repository from GitHub into a temporary directory:
 
-2. Select **+ New project** to create a project.
+   ```sh
+    mkdir temp
+    cd temp
+    git clone https://github.com/azure/GenAIOps
+   ```
 
-3. Choose an unique name for your project.
+2. **Define Properties for Bootstrapping**
 
-    ![The Create a project dialog displays with a Project name entered.](images/labgrab2.png)
+    Go to the `GenAIOps` directory.
 
-4. Above the **Hub** drop down box, select the **Create a new hub** link and choose a name for your AI hub where your project resources will be created.
+   ```sh
+    cd GenAIOps
+   ```
 
-    ![The Create a hub stage of the Create a project dialog displays. The Hub name field is populated with a value.](images/labgrab3.png)
+   Create a copy of the `bootstrap.properties.template` file with this filename `bootstrap.properties`.
 
-    > Note: Choose the region where the GPT-4 models and text-embeddings-ada-002 are available.
+    ```sh
+    cp bootstrap.properties.template bootstrap.properties
+    ```
 
-5. Remaining on this screen, select the **Create a new Azure AI Search** link located above the **Connect Azure AI Search** drop down. Enter a name for the Azure AI Search resource, then choose **Create**.
+    Open the `bootstrap.properties` with a text editor and update it with the following information:
 
-    ![The Create a hub stage of the Create a project dialog displays with a pop up above the Connect Azure AI Search field asking for a name for a Standard Azure AI Search index resource. The Name field is populated with a value.](images/labgrab4.png)
+   - **GitHub Repo Creation** (related to the new repository to be created)
+     - `github_username`: Your GitHub **username**.
+     - `github_use_ssh`: Set to **false** to use [HTTPS](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls) or **true** to interact with GitHub repos using [SSH](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-ssh-urls).
+     - `github_template_repo`: Set **azure/GenAIOps-project-template**.
+     - `github_new_repo`: The bootstrapped project repo to be created. Ex: *placerda/my-rag-project*.
+     - `github_new_repo_visibility`: Set to **public**.
 
-6. Finally, review the details of the project, then select the **Create a project** button to deploy the project resources. Wait for the deployment to complete, this will take a minute or two.
+   - **Dev Environment Provision Properties**
+     - `azd_dev_env_provision`: Set to **true** to provision a development environment.
+     
+          > If you set it to **false**, you will need to manually create the environment for the project.
 
-    ![The Review and finish stage of the Create a project dialog displays with a summary of the previous choices. The Create a project button is visible.](images/labgrab5.png)
+     - `azd_dev_env_name`: The name of the development environment. Ex: *rag-project-dev*.
+     - `azd_dev_env_subscription`: Your Azure subscription ID.
+     - `azd_dev_env_location`: The Azure region for your dev environment. Ex: *eastus2*.
 
-    ![A listing of the resources that are to be deployed is displayed. A message at the bottom of the Create a project dialog indicates resources are being created.](images/labgrab6.png)
+    > The dev environment resources will be created in the selected subscription and region. This decision should consider the quota available for the resources to be created in the region, as well as the fact that some resources have specific features enabled only in certain regions. Therefore, ensure that the resources to be created by the IaC of your template project have quota and availability in the chosen subscription and region. More information about the resources to be created can be found on the template page, as shown in this project template example: [GenAIOps Project Template Resources](https://github.com/Azure/GenAIOps-project-template/blob/main/README.md#project-resources).
 
-##### 2) Deploy an Azure OpenAI model
+   Here is an example of the `bootstrap.properties` file:
 
-After creating your AI Project, the first step is to create a deployment of an OpenAI model so you can start experimenting with the prompts you will use in your application.
+   ```properties
+   github_username="placerda"
+   github_use_ssh="false"
+   github_template_repo="azure/GenAIOps-project-template"
+   github_new_repo="placerda/my-rag-project"
+   github_new_repo_visibility="public"
+   azd_dev_env_provision="true"
+   azd_dev_env_name="rag-project-dev"
+   azd_dev_env_subscription="12345678-1234-1234-1234-123456789098"
+   azd_dev_env_location="eastus2"
+   ```
 
-1. To do this, select the **Deployments** option on the bottom of the project panel, and select the **+ Create deployment** button.
+3. **Authenticate with Azure and GitHub**
 
-    ![The Deployments screen in Azure AI Studio displays. There are no deployments in the list.](images/labgrab7.png)
+   Log in to Azure CLI:
 
-2. From the list of models, search for and select **gpt-4**.
+   ```sh
+   az login
+   ```
 
-    ![The model catalog search displays with the gpt-4 model selected.](images/labgrab8.png)
+   Log in to Azure Developer CLI:
 
-3. In the **Deploy model** dialog window, define the name of the deployment, in this case, you can use the same name as the model and in the version field select the latest available version, in the example below we chose version **0125-Preview** (gpt4-turbo).
+   ```sh
+   azd auth login
+   ```
 
-    ![The Deploy model gpt-4 displays with the version of 0125-Preview selected.](images/labgrab9.png)
+   Log in to GitHub CLI:
 
-4. Select at least 40K **Tokens per Minute Rate Limit** to ensure the flows run smoothly in the upcoming lessons.
+   ```sh
+   gh auth login
+   ```
 
-5. Select **Deploy** to deploy the **gpt-4** model. Once deployed, you can test it in the Playground.
+4. **Run the Bootstrap Script**
 
-##### 3) Create a Content Safety Service
+   The bootstrap script is available in two versions: Bash (`bootstrap.sh`) and PowerShell (`bootstrap.ps1`).
 
-This exercise involves the deployment of the Azure Content Safety service. This configurable service is used to detect and filter for inappropriate content ensuring that the content generated by the AI models is safe for the users.
+   Run the appropriate script for your environment.
 
-1. Select the following link to create an [Azure Content Safety service](https://aka.ms/acs-create).
+   **For Bash:**
 
-2. On the **Create Content Safety** screen in the **Basics** tab, select the resource group that was deployed when creating the AI Project in the first step. Provide a name for the service, and select **Standard S0** as the pricing tier. Select **Review + create** to continue.
+   ```sh
+   ./bootstrap.sh
+   ```
 
-    ![The Create Content Safety screen Basics tab displays with the Name field populated and the Pricing tier set to Standard S0.](images/labgrab10.png)
+   **For PowerShell:**
 
-3. On the **Review + create** tab, review the details of the service settings, then select **Create** to deploy the Azure Content Safety service.
+   ```powershell
+   .\bootstrap.ps1
+   ```
 
-    ![The Create Content Safety Review + create tab displays with the Create button visible.](images/labgrab11.png)
+    At the end of its execution, the script will have created and initialized the new repository and provisioned the development environment resources, provided you set `azd_dev_env_provision` to true. During its execution, the script checks if the new repository exists and creates it if it does not. It then clones the template repository and mirrors it to the new repository. Additionally, it sets the default branch for the new repository.
 
-4. Wait for the Content Safety service to be created. Once complete, you've successfully achieved the goals of this setup task.
+5. **Create a Service Principal**
 
-    ![A deployment confirmation screen displays indicating the deployment of the Content Safety Service has completed.](images/labgrab12.png)
+   Create a service principal using the following command:
 
+   ```sh
+   az ad sp create-for-rbac --name "<your-service-principal-name>" --role Owner --scopes /subscriptions/<your-subscription-id> --sdk-auth
+   ```
+
+   > Ensure that the output information created here is properly saved for future use.
+
+6. **Set GitHub Environment Variables**
+
+   Go to the newly created project repository and set the following GitHub environment variables and secret for three environments: `dev`, `qa`, and `prod`.
+
+   - **Environment Variables:**
+     - `AZURE_ENV_NAME`
+     - `AZURE_LOCATION`
+     - `AZURE_SUBSCRIPTION_ID`
+   
+   - **Secret:**
+     - `AZURE_CREDENTIALS`
+
+   After creating the variables and secret, your Environments page should resemble the following example:
+   
+   ![Environments Page](images/bootstrapping_environments.png)
+   
+   Below is an example of environment variable values for a development environment:
+   
+   ![Environment Variables](images/bootstrapping_env_vars.png)
+   
+   The `AZURE_CREDENTIALS` secret should be formatted as follows:
+    
+   ```json
+   {
+       "clientId": "your-client-id",
+       "clientSecret": "your-client-secret",
+       "subscriptionId": "your-subscription-id",
+       "tenantId": "your-tenant-id"
+   }
+   ```
+
+   > **Note:** If you are only interested in experimenting with this accelerator, you can use the same subscription, varying only `AZURE_ENV_NAME` for each enviornment.
+
+7. **Enable GitHub Actions**
+
+   Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply click the button indicated in the figure below:
+
+   ![Enable Actions](images/enable_github_actions.png)
+
+That's all! Your new project is now bootstrapped and you are ready to start the workshop.
 </details>
