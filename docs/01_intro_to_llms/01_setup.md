@@ -33,9 +33,10 @@ In this setup task, you will learn how to **start a new project** by creating a 
 * [Access to Azure OpenAI](https://learn.microsoft.com/legal/cognitive-services/openai/limited-access) - submit a form to request access.
 * Permissions to create a Service Principal (SP) in your Azure AD Tenant.
 * Permissions to assign the Owner role or Contributor and User Access Administrator to the SP within the subscription.
+* Install jq (optional) - a lightweight and flexible command-line JSON processor by running the following command `winget install jqlang.jq`
 
 > **Note:**   
-> The Windows installers makes modifications your PATH. When using Windows Terminal or VS Code Terminal or other environment, you will need to **open a new window** for the changes to take effect. (Simply opening a new tab will _not_ be sufficient.)
+> The Windows installers make modifications to your PATH. When using Windows Terminal or VS Code Terminal or other environment, you will need to **open a new window** for the changes to take effect. (Simply opening a new tab will _not_ be sufficient.)
 
 ### Verifiy tools are installed
 
@@ -50,7 +51,7 @@ In this setup task, you will learn how to **start a new project** by creating a 
     gh --version
    ```
 > **Note:**
-> if any of the tools suggest an upgrade please do so this can be acomplished with the ```winget upgrade``` conmand 
+> if any of the tools suggest an upgrade please do so. This can be acomplished with the ```winget upgrade``` conmand 
 
 
 ### Check Azure OpenAI Model Availability:
