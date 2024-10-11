@@ -26,6 +26,7 @@ In this setup task, you will learn how to **start a new project** by creating a 
 * [Azure Developer CLI (azd)](https://aka.ms/install-azd) - to manage Azure deployments.
 * [GitHub CLI (gh)](https://cli.github.com/) - to create GitHub repo.
 * [Git](https://git-scm.com/downloads) - to update repository contents.
+* [Powershell 7.4.5](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4#installing-the-msi-package) - to run commands.
 
 ### You will also need:
 * [Azure Subscription](https://azure.microsoft.com/free/) - sign up for a free account.
