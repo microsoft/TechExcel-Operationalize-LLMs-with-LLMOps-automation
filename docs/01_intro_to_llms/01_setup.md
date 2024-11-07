@@ -111,9 +111,9 @@ The bootstrapping process involves **creating a new project repository on GitHub
 
 1.  Go to the **GenAIOps** directory.
 
-   ```sh
-    cd GenAIOps
-   ```
+    ```sh
+     cd GenAIOps
+    ```
 
 1. Create a copy of the **bootstrap.properties.template** file with this filename **bootstrap.properties**.
 
@@ -270,6 +270,8 @@ At the end of its execution, the script will have created and initialized the ne
 1. Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply click the button indicated in the figure below:
 
    ![Enable Actions](images/enable_github_actions.png)
+
+</details>
 
 That's all! Your new project is now bootstrapped and you are ready to start the workshop.
 </details>
