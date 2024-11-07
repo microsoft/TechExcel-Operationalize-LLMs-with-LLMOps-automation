@@ -42,9 +42,9 @@ In this setup task, you will learn how to **start a new project** by creating a 
 
 ### Verifiy tools are installed
 
-**from a commandline verify the tools are installed and on your path**
+From a command line, verify the tools are installed and on your path.
 
-   Open a Windows Terminal or Command Prompt:
+1. Open a Windows Terminal or Command Prompt and enter the following:
 
    ```sh
     az -v
@@ -52,12 +52,15 @@ In this setup task, you will learn how to **start a new project** by creating a 
     git -v
     gh --version
    ```
+   
 > **Note:**
 > if any of the tools suggest an upgrade please do so. This can be acomplished with the ```winget upgrade``` conmand 
 
 
 ### Check Azure OpenAI Model Availability:
-You will need 40k TPM of gpt-35-turbo, gpt-4o and text-embedding-ada-002 models. If the region you want to use does not have availability, you can choose another region. You can run the following command in powershell or bash to check how many TPMs do you have available for those models in the desired region/sub.
+You will need 40k TPM of gpt-35-turbo, gpt-4o and text-embedding-ada-002 models. If the region you want to use does not have availability, you can choose another region. 
+
+1. Run the following command in powershell or bash to check how many TPMs do you have available for those models in the desired region/sub.
 
 #### Powershell
 
@@ -82,39 +85,43 @@ echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.text-embeddi
 ```
 </details>
 
-## Setup Steps
-<details markdown="block">
-<summary>Expand this section to view the solution</summary>
-
-### Steps to Bootstrap a Project
+## Steps to Bootstrap a Project
 
 The bootstrapping process involves **creating a new project repository on GitHub** and populating it with content from a project template. Additionally, it sets up the **development environment** for your project. This environment will include an **Azure AI Studio project** and deploy the necessary resources to support a centralized **Azure AI Hub**.
 
-1. **Clone the GenAIOps Repo into a temporary directory**
+### 01: Clone the GenAIOps Repo into a temporary directory
 
-   Clone the repository from GitHub into a temporary directory:
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+   
+1. Clone the repository from GitHub into a temporary directory:
 
    ```sh
     mkdir temp
     cd temp
     git clone https://github.com/azure/GenAIOps
    ```
+   
+</details>
 
-2. **Define Properties for Bootstrapping**
+### 02: Define Properties for Bootstrapping
 
-    Go to the `GenAIOps` directory.
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+1.  Go to the **GenAIOps** directory.
 
    ```sh
     cd GenAIOps
    ```
 
-   Create a copy of the `bootstrap.properties.template` file with this filename `bootstrap.properties`.
+1. Create a copy of the **bootstrap.properties.template** file with this filename **bootstrap.properties**.
 
     ```sh
     cp bootstrap.properties.template bootstrap.properties
     ```
 
-    Open the `bootstrap.properties` with a text editor and update it with the following information:
+1. Open the **bootstrap.properties** with a text editor and update it with the following information:
 
    - **GitHub Repo Creation** (related to the new repository to be created)
      - `github_username`: Your GitHub **username**.
@@ -132,9 +139,10 @@ The bootstrapping process involves **creating a new project repository on GitHub
      - `azd_dev_env_subscription`: Your Azure subscription ID.
      - `azd_dev_env_location`: The Azure region for your dev environment. Ex: *eastus2*.
 
+    {: .note }
     > The dev environment resources will be created in the selected subscription and region. This decision should consider the quota available for the resources to be created in the region, as well as the fact that some resources have specific features enabled only in certain regions. Therefore, ensure that the resources to be created by the IaC of your template project have quota and availability in the chosen subscription and region. More information about the resources to be created can be found on the template page, as shown in this project template example: [GenAIOps Project Template Resources](https://github.com/Azure/GenAIOps-project-template/blob/main/README.md#project-resources).
 
-   Here is an example of the `bootstrap.properties` file:
+   Here is an example of the **bootstrap.properties** file:
 
    ```properties
    github_username="placerda"
@@ -148,31 +156,41 @@ The bootstrapping process involves **creating a new project repository on GitHub
    azd_dev_env_location="eastus2"
    ```
 
-3. **Authenticate with Azure and GitHub**
+</details>
 
-   Log in to Azure CLI:
+### 03: Authenticate with Azure and GitHub
+
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+1. Log in to Azure CLI:
 
    ```sh
    az login
    ```
 
-   Log in to Azure Developer CLI:
+1. Log in to Azure Developer CLI:
 
    ```sh
    azd auth login
    ```
 
-   Log in to GitHub CLI:
+1. Log in to GitHub CLI:
 
    ```sh
    gh auth login
    ```
 
-4. **Run the Bootstrap Script**
+</details>
 
-   The bootstrap script is available in two versions: Bash (`bootstrap.sh`) and PowerShell (`bootstrap.ps1`).
+### 04: Run the Bootstrap Script
 
-   Run the appropriate script for your environment.
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+The bootstrap script is available in two versions: Bash (`bootstrap.sh`) and PowerShell (`bootstrap.ps1`).
+
+1. Run the appropriate script for your environment.
 
    **For Bash:**
 
@@ -186,11 +204,16 @@ The bootstrapping process involves **creating a new project repository on GitHub
    .\bootstrap.ps1
    ```
 
-    At the end of its execution, the script will have created and initialized the new repository and provisioned the development environment resources, provided you set `azd_dev_env_provision` to true. During its execution, the script checks if the new repository exists and creates it if it does not. It then clones the template repository and mirrors it to the new repository. Additionally, it sets the default branch for the new repository.
+At the end of its execution, the script will have created and initialized the new repository and provisioned the development environment resources, provided you set `azd_dev_env_provision` to true. During its execution, the script checks if the new repository exists and creates it if it does not. It then clones the template repository and mirrors it to the new repository. Additionally, it sets the default branch for the new repository.
 
-5. **Create a Service Principal**
+</details>
 
-   Create a service principal using the following command:
+### 05: Create a Service Principal
+
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+1. Create a service principal using the following command:
 
    ```sh
    az ad sp create-for-rbac --name "<your-service-principal-name>" --role Owner --scopes /subscriptions/<your-subscription-id> --sdk-auth
@@ -198,9 +221,14 @@ The bootstrapping process involves **creating a new project repository on GitHub
 
    > Ensure that the output information created here is properly saved for future use.
 
-6. **Set GitHub Environment Variables**
+</details>
 
-   Go to the newly created project repository and set the following GitHub environment variables and secret for three environments: `dev`, `qa`, and `prod`.
+### 06: Set GitHub Environment Variables
+
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+1. Go to the newly created project repository and set the following GitHub environment variables and secret for three environments: `dev`, `qa`, and `prod`.
 
    - **Environment Variables:**
      - `AZURE_ENV_NAME`
@@ -210,7 +238,7 @@ The bootstrapping process involves **creating a new project repository on GitHub
    - **Secret:**
      - `AZURE_CREDENTIALS`
 
-   After creating the variables and secret, your Environments page should resemble the following example:
+ After creating the variables and secret, your Environments page should resemble the following example:
    
    ![Environments Page](images/bootstrapping_environments.png)
    
@@ -229,11 +257,17 @@ The bootstrapping process involves **creating a new project repository on GitHub
    }
    ```
 
+   {: .note } 
    > **Note:** If you are only interested in experimenting with this accelerator, you can use the same subscription, varying only `AZURE_ENV_NAME` for each enviornment.
 
-7. **Enable GitHub Actions**
+</details>
 
-   Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply click the button indicated in the figure below:
+### 07. Enable GitHub Actions
+
+<details markdown="block">
+<summary>Expand this section to view the solution</summary>
+
+1. Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply click the button indicated in the figure below:
 
    ![Enable Actions](images/enable_github_actions.png)
 
