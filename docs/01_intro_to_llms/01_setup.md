@@ -1,11 +1,11 @@
 ---
-title: '0. Setup'
+title: '00. Setup'
 layout: default
 nav_order: 1
 parent: 'Exercise 01: Introduction to LLMs and Azure AI Services'
 ---
 
-# Exercise 01 - Setup AI Project and AI Hub Resources
+# Task 00: Setup AI Project and AI Hub Resources
 
 ## Description
 
