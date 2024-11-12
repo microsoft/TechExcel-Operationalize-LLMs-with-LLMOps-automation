@@ -123,21 +123,22 @@ The bootstrapping process involves **creating a new project repository on GitHub
 
 1. Open the **bootstrap.properties** with a text editor and update it with the following information:
 
-   - **GitHub Repo Creation** (related to the new repository to be created)
-     - `github_username`: Your GitHub **username**.
-     - `github_use_ssh`: Set to **false** to use [HTTPS](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls) or **true** to interact with GitHub repos using [SSH](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-ssh-urls).
-     - `github_template_repo`: Set **azure/GenAIOps-project-template**.
-     - `github_new_repo`: The bootstrapped project repo to be created. Ex: *placerda/my-rag-project*.
-     - `github_new_repo_visibility`: Set to **public**.
+   1. **GitHub Repo Creation** (related to the new repository to be created)
+      1. `github_username`: Your GitHub **username**.
+      1. `github_use_ssh`: Set to **false** to use [HTTPS](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls) or **true** to interact with GitHub repos using [SSH](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-ssh-urls).
+      1. `github_template_repo`: Set **azure/GenAIOps-project-template**.
+      1. `github_new_repo`: The bootstrapped project repo to be created. Ex: *placerda/my-rag-project*.
+      1. `github_new_repo_visibility`: Set to **public**.
 
-   - **Dev Environment Provision Properties**
-     - `azd_dev_env_provision`: Set to **true** to provision a development environment.
-     
+   1. **Dev Environment Provision Properties**
+      1. `azd_dev_env_provision`: Set to **true** to provision a development environment.
+  
+          {: .note}
           > If you set it to **false**, you will need to manually create the environment for the project.
 
-     - `azd_dev_env_name`: The name of the development environment. Ex: *rag-project-dev*.
-     - `azd_dev_env_subscription`: Your Azure subscription ID.
-     - `azd_dev_env_location`: The Azure region for your dev environment. Ex: *eastus2*.
+      1. `azd_dev_env_name`: The name of the development environment. Ex: *rag-project-dev*.
+      1. `azd_dev_env_subscription`: Your Azure subscription ID.
+      1. `azd_dev_env_location`: The Azure region for your dev environment. Ex: *eastus2*.
 
     {: .note }
     > The dev environment resources will be created in the selected subscription and region. This decision should consider the quota available for the resources to be created in the region, as well as the fact that some resources have specific features enabled only in certain regions. Therefore, ensure that the resources to be created by the IaC of your template project have quota and availability in the chosen subscription and region. More information about the resources to be created can be found on the template page, as shown in this project template example: [GenAIOps Project Template Resources](https://github.com/Azure/GenAIOps-project-template/blob/main/README.md#project-resources).
