@@ -22,7 +22,7 @@ In this setup task, you will learn how to **start a new project** by creating a 
 <summary>Expand this section to view the prerequisites</summary>
 
 ### Required Tools
-* [Azure CLI (az)](https://aka.ms/install-az) - to manage Azure resources.
+* [Azure CLI (az)](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli#install-or-update) - to manage Azure resources.
 * [Azure Developer CLI (azd)](https://aka.ms/install-azd) - to manage Azure deployments.
 * [GitHub CLI (gh)](https://cli.github.com/) - to create GitHub repo.
 * [Git](https://git-scm.com/downloads) - to update repository contents.
@@ -38,7 +38,6 @@ In this setup task, you will learn how to **start a new project** by creating a 
 * Install jq (optional) - a lightweight and flexible command-line JSON processor by running the following command `winget install jqlang.jq`
 
 {: .note }
-> **Note:**   
 > The Windows installers make modifications to your PATH. When using Windows Terminal or VS Code Terminal or other environment, you will need to **open a new window** for the changes to take effect. (Simply opening a new tab will _not_ be sufficient.)
 
 ### Verifiy tools are installed
@@ -54,7 +53,7 @@ From a command line, verify the tools are installed and on your path.
     gh --version
    ```
    
-> **Note:**
+{: .note }
 > if any of the tools suggest an upgrade please do so. This can be acomplished with the ```winget upgrade``` conmand 
 
 
@@ -85,6 +84,10 @@ echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.gpt-35-turbo
 echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.text-embedding-ada-002")'
 ```
 </details>
+
+{: .note }
+> Availability, quotas, and limits:
+> https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
 
 ## Steps to Bootstrap a Project
 
@@ -260,7 +263,7 @@ At the end of its execution, the script will have created and initialized the ne
    ```
 
    {: .note } 
-   > **Note:** If you are only interested in experimenting with this accelerator, you can use the same subscription, varying only `AZURE_ENV_NAME` for each enviornment.
+   > If you are only interested in experimenting with this accelerator, you can use the same subscription, varying only `AZURE_ENV_NAME` for each enviornment.
 
 </details>
 
