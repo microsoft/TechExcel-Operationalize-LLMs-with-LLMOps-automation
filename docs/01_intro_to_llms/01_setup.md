@@ -83,11 +83,11 @@ echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.gpt-4o")'
 echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.gpt-35-turbo")'
 echo $results | jq -r '.[] | select(.name.value == "OpenAI.Standard.text-embedding-ada-002")'
 ```
-</details>
-
 {: .note }
 > Availability, quotas, and limits:
 > https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits
+
+</details>
 
 ## Steps to Bootstrap a Project
 
@@ -224,6 +224,7 @@ At the end of its execution, the script will have created and initialized the ne
    az ad sp create-for-rbac --name "<your-service-principal-name>" --role Owner --scopes /subscriptions/<your-subscription-id> --sdk-auth
    ```
 
+   {: .note }
    > Ensure that the output information created here is properly saved for future use.
 
 </details>
@@ -235,13 +236,13 @@ At the end of its execution, the script will have created and initialized the ne
 
 1. Go to the newly created project repository and set the following GitHub environment variables and secret for three environments: `dev`, `qa`, and `prod`.
 
-   - **Environment Variables:**
-     - `AZURE_ENV_NAME`
-     - `AZURE_LOCATION`
-     - `AZURE_SUBSCRIPTION_ID`
+   1. **Environment Variables:**
+      1. `AZURE_ENV_NAME`
+      1. `AZURE_LOCATION`
+      1. `AZURE_SUBSCRIPTION_ID`
    
-   - **Secret:**
-     - `AZURE_CREDENTIALS`
+   1. **Secret:**
+      1. `AZURE_CREDENTIALS`
 
  After creating the variables and secret, your Environments page should resemble the following example:
    
@@ -272,7 +273,7 @@ At the end of its execution, the script will have created and initialized the ne
 <details markdown="block">
 <summary>Expand this section to view the solution</summary>
 
-1. Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply click the button indicated in the figure below:
+1. Ensure that GitHub Actions are enabled in your repository, as in some cases, organizational policies may not have this feature enabled by default. To do this, simply select **Enable Actions on this repository**, as indicated in the figure below:
 
    ![Enable Actions](images/enable_github_actions.png)
 
