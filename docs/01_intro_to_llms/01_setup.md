@@ -37,6 +37,7 @@ In this setup task, you will learn how to **start a new project** by creating a 
 * Permissions to assign the Owner role or Contributor and User Access Administrator to the SP within the subscription.
 * Install jq (optional) - a lightweight and flexible command-line JSON processor by running the following command `winget install jqlang.jq`
 
+{: .note }
 > **Note:**   
 > The Windows installers make modifications to your PATH. When using Windows Terminal or VS Code Terminal or other environment, you will need to **open a new window** for the changes to take effect. (Simply opening a new tab will _not_ be sufficient.)
 
