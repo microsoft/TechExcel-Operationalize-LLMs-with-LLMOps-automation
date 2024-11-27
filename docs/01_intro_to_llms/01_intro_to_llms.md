@@ -13,14 +13,14 @@ In this exercise, we will provide an overview of how to use Azure AI to work wit
 
 The focus will be on understanding the overall process of creating, evaluating, and deploying LLMs within the Azure environment. This foundational knowledge will be crucial as we delve deeper into the build, evaluation, deployment, and monitoring processes in subsequent lessons.
 
-By the end of this exercise, you as part of the Lamna team will have a solid understanding of the basic tools and services available in Azure AI Studio.
+By the end of this exercise, you as part of the Lamna team will have a solid understanding of the basic tools and services available in Azure AI Foundry.
 
 ## Objectives
 
 After you complete this exercise, you will be able to:
 
 * Bootstrap your project.
-* Use AzureAI Studio Playground.
+* Use AzureAI Foundry Playground.
 * Work with an Open Source LLM Model.
 * Test the prompt in Content Safety.
 
@@ -29,11 +29,11 @@ After you complete this exercise, you will be able to:
 * **Estimated Time:** 60 minutes
 
 <details markdown="block">
-<summary>Index of key Concepts of Azure AI Studio</summary>
+<summary>Index of key Concepts of Azure AI Foundry</summary>
 
 ## Azure AI Resource  
    
-The Azure AI Resource is the main Azure resource for AI Studio. It provides a working environment for teams to build and manage AI applications. It allows access to multiple Azure AI services in a single setup and includes features for billing, security configuration, and monitoring.  
+The Azure AI Resource is the main Azure resource for AI Foundry. It provides a working environment for teams to build and manage AI applications. It allows access to multiple Azure AI services in a single setup and includes features for billing, security configuration, and monitoring.  
    
 ## Azure AI projects  
    
