@@ -8,7 +8,7 @@ nav_order: 1
 
 ## Azure services and related products
 
-- Azure AI Studio
+- Azure AI Foundry
 - Azure OpenAI
 - Azure Hub
 - Azure Prompt Flows
@@ -19,13 +19,13 @@ nav_order: 1
 
 ![Diagram showing Azure AI Studio and the scope of use within the environment](resource-provider-connected-resources.svg)
 
-The diagram shows the solution architecture of an AI project within Azure AI Studio. The AI Studio Hub includes the Azure Subcription, Resource Group, and Azure Content Safety service. The AI Studio Hub provides integration with services including Azure OpenAI, Azure AI Search, and Azure Storage Accounts to implement AI-based solutions. The AI Playground offers tools like Chat Playground, Deployments, and Prompt Flow, that enable quick and easy access to AI models such as GPT-4 and Llama-2 and interactive development tools.
+The diagram shows the solution architecture of an AI project within Azure AI Foundry. The AI Foundry Hub includes the Azure Subcription, Resource Group, and Azure Content Safety service. The AI Foundry Hub provides integration with services including Azure OpenAI, Azure AI Search, and Azure Storage Accounts to implement AI-based solutions. The AI Playground offers tools like Chat Playground, Deployments, and Prompt Flow, that enable quick and easy access to AI models such as GPT-4 and Llama-2 and interactive development tools.
 
 ## Exercises
 
 These labs have exercises on:
 
-* Configuring and setting up Azure AI Studio Project
+* Configuring and setting up Azure AI Foundry Project
 * Set up a Conversational RAG Flow
 * Emulated chat interactions and testing
 * Creating and testing multiple prompt flows and models
