@@ -17,7 +17,7 @@ By the end of this exercise, Lamna’s team will have a functional RAG flow inte
 
 After you complete this exercise, you will be able to:
 
-* Set up VSCode in AI Studio  
+* Set up VSCode in Azure AI Foundry  
 * Load the Vector Index  
 * Modify the prompt  
 * Test the prompt  
