@@ -214,6 +214,10 @@ The bootstrap script is available in two versions: Bash (`bootstrap.sh`) and Pow
 
 At the end of its execution, the script will have created and initialized the new repository and provisioned the development environment resources, provided you set `azd_dev_env_provision` to true. During its execution, the script checks if the new repository exists and creates it if it does not. It then clones the template repository and mirrors it to the new repository. Additionally, it sets the default branch for the new repository.
 
+   {: .important }
+   > Since 2025/02/13 the version of GPT-35-Turbo 0613 is not supported and causes the deployment to fail.
+   > If you deployment fails because of this, go to your github repo, to the file ./infra/ai.yaml, change on line 8 to version "0125"
+
 </details>
 
 ### 05: Create a Service Principal
